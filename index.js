@@ -28,7 +28,7 @@ var db = require("./models");
   //   }
   // })
 
-db.Student.create({first_name:"Andi", last_name:"Wijaya",birthday:"1990-02-13",email:"didietsuryadi@gmail.com",height:125,phone:"0816895056"}).then(function(data){
+db.Student.create({first_name:"Andi", last_name:"Wijaya",birthday:"1990-02-13",email:"dedesuryadi@gmail.com",height:170,phone:"0816895056"}).then(function(data){
   console.log("data added", data);
 }).catch(function(err){
   console.log(err.message);

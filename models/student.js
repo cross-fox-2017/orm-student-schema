@@ -8,19 +8,15 @@ module.exports = function(sequelize, DataTypes) {
       type:DataTypes.STRING,
       validate: {
         isEmail: {args: true, msg: "email is not valid"},
-        equals: {args:function(err,value){
-          Student.find({where:{email:value}})
-          .done(error,email){
-            if(error){
-              console.log(error);
-            }
-            if(email){
-              return email
-            }
+        isUniq:  function(value,next){Student.find({where:{email:value}}).done(function(user){
+          if(user){
+            return next("data is exist")
           }
-        },msg: "email is exist"}
+          next()
+        })
       }
-    },
+    }
+  },
     height: {
       type:DataTypes.INTEGER,
       validate:{
@@ -30,14 +26,13 @@ module.exports = function(sequelize, DataTypes) {
     phone: {
       type:DataTypes.STRING,
       validate:{
-        len: {args: [10,13], msg: "number beatween 10 - 13"},
-        isNumeric: {args:true, msg: "only numeric allowed"},
-        isAlpha:{args:false, msg: "letters isnt allowed"}
+        len: {args: [10,13], msg: "phone length must be 10 - 13"},
+        isNumeric: {args:true, msg: "phone only numeric allowed"},
       }
     }
   },
+    {
 
-  {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
