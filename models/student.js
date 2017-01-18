@@ -6,14 +6,37 @@ module.exports = function(sequelize, DataTypes) {
     birthdate: DataTypes.DATE,
     telepon: {
       type:DataTypes.INTEGER,
-      len : [10,13],
-      isNumeric:true
+      validate:{
+        len : {
+          args:[10,13],
+          msg:"validation error : phone length must be 10-13"
+        },
+        isNumeric:{
+          args : true,
+          msg:"validation error : phone not allow letters"
+        },
+        isAlphanumeric:{
+          args: false,
+          msg:"validation error: phone not allow alphanumeric"
+        }
+      }
     },
     email:{
        type:DataTypes.STRING,
-       validate:{
-         isEmail : true
-       }
+       validate:{//start validate email
+         isEmail : true,
+         isUnique: function(value, next){
+           Student.find({
+             where:{email:value},
+             attributes:['id']
+           }).done(function(user){
+             if(user){
+               return next('Email address already in use!')
+             }
+             next();
+           });
+         }
+       }//End validate email
     },
 
     height:{
