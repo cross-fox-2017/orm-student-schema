@@ -11,8 +11,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     phone: {
       type: DataTypes.STRING,
-      validate: {len: [10,13], isAlpha; false, isAlphanumeric: false}
-    }
+      validate: {len: [10,13], isNumeric: true, isAlphanumeric: false}
+    },
     height: {
       type: DataTypes.INTEGER,
       validate: {min: 150}
