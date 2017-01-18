@@ -12,7 +12,10 @@ const faker = require('faker')
 // )
 
 //testemailvalidator
-db.Student.create({firstName: faker.name.firstName(), lastName: faker.name.lastName(), birthday: faker.date.between('1990-01-01', '2000-01-05'), email:'email@bener.com', phone:'123456789101', height:150})
+// db.Student.create({firstName: faker.name.firstName(), lastName: faker.name.lastName(), birthday: faker.date.between('1990-01-01', '2000-01-05'), email:'ema@dos.com', phone:'48932428935', height:150})
+// .catch(function(err){
+//   console.log(err.message);
+})
 //true then false
 // db.Student.create({firstName: faker.name.firstName(), lastName: faker.name.lastName(), birthday: faker.date.between('1990-01-01', '2000-01-05'), email:'emailpalsu.com', phone:'1234567891012ee', height:140})
 

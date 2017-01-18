@@ -6,16 +6,23 @@ module.exports = function(sequelize, DataTypes) {
     birthday: DataTypes.DATE,
     email: {
       type: DataTypes.STRING,
-      validate: {isEmail: true, isUnique: true},
-      // unique: true didn't work
+      validate: {isEmail: {args: true, msg: "Email in wrong format"},
+      isUniq: function(value, next){
+        Student.findOne({where:{email:value}, attributes: ['id']}).done(function(err,data){
+          if (err){ return next(err)}
+          if (data){ return next({msg: 'Email address already in use!'})}
+            next();
+          })
+        }
+      }
     },
     phone: {
       type: DataTypes.STRING,
-      validate: {len: [10,13], isNumeric: true, isAlphanumeric: false}
+      validate: {len: {args: [10,13], msg: "Phone length must between 10-13"}, isNumeric: {args: true, msg: "Number Only"}, isAlphanumeric: {args: false, msg: "No Special Character"}}
     },
     height: {
       type: DataTypes.INTEGER,
-      validate: {min: 150}
+      validate: {min: {args: 150, msg: "Minimal Height Must Above 150"}}
     }
   }, {
     classMethods: {
