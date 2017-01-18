@@ -6,8 +6,8 @@ module.exports = function(sequelize, DataTypes) {
     birthday: DataTypes.DATE,
     email: {
       type: DataTypes.STRING,
-      validate: {isEmail: true},
-      unique: true
+      validate: {isEmail: true, isUnique: true},
+      // unique: true didn't work
     },
     phone: {
       type: DataTypes.STRING,
