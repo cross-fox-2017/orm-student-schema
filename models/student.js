@@ -61,7 +61,6 @@ module.exports = function(sequelize, DataTypes) {
         Student.findAll().then(function (data) {
           let temp = [];
           data.forEach(function (item) {
-            // console.log(item); item = data
             temp.push({
               id: item.dataValues.id,
               first_name: item.dataValues.first_name,
@@ -146,4 +145,14 @@ let now = new Date();
 let now2 = now.getFullYear()
 let age = this.birthdate.getFullYear()
 return age - now2;
+*/
+
+/*
+5. Cara untuk prototype attribute:
+Student.findAll().then(function(students) {
+  students.forEach(function(data) {
+  data.full_name = `${data.first_name} ${data.last_name}`
+  })
+  cb(students);
+})
 */
