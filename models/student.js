@@ -19,8 +19,18 @@ module.exports = function(sequelize, DataTypes) {
     phone: {
       type: DataTypes.STRING,
       validate: {
-        len: [10, 13],
-        isAlphanumeric: false,
+        len: {
+          args: [10, 13],
+          message: 'Validation Error: Phone length must be 10 - 13'
+        },
+        isAlpha: {
+          args: false,
+          message: 'Validation Error: Phone not allow letter'
+        },
+        isAlphanumeric: {
+          args: false,
+          message: 'Validation Error: Phone not allow alphanumeric'
+        },
         isNumeric: true
       }
     }

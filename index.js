@@ -21,5 +21,7 @@ let db = require('./models')
 //   })
 // })
 db.Student.create(
-  {firstname: 'tesss', lastname: 'duadua', birthdate: '1990-05-11', email: 'mangkuwi26@gmail.com', height: 150, phone: '081311232324961469'}
-)
+  {firstname: 'tesss', lastname: 'duadua', birthdate: '1990-05-11', email: 'mangkuwi26@gmail.com', height: 150, phone: 'asds'}
+).catch(function (err) {
+  console.log(err.message);
+})
