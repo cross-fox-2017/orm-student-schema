@@ -3,7 +3,27 @@ module.exports = function(sequelize, DataTypes) {
   var Student = sequelize.define('Student', {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
-    birthdate: DataTypes.DATE
+    birthdate: DataTypes.DATE,
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
+    height: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 150
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [10, 13],
+        isAlphanumeric: false,
+        isNumeric: true
+      }
+    }
   }, {
     classMethods: {
       associate: function(models) {
@@ -21,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       getAge: function () {
         let age = new Date(this.birthdate)
-        return Math.floor((Date.now() - age) / 31540000000 ) 
+        return Math.floor((Date.now() - age) / 31540000000 )
       }
     }
   });
