@@ -17,5 +17,6 @@ db.Student.getAllData(function (students) {
     console.log(`Firstname: ${student.firstname}`);
     console.log(`Lastname: ${student.lastname}`);
     console.log(`Fullname: ${student.getFullName()}`);
+    console.log(student.getAge());
   })
 })

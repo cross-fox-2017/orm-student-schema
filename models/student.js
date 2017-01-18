@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods:{
       getFullName: function () {
         return `${this.firstname} ${this.lastname}`
+      },
+      getAge: function () {
+        let age = new Date(this.birthdate)
+        return Math.floor((Date.now() - age) / 31540000000 ) 
       }
     }
   });
