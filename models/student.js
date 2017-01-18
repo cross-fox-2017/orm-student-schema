@@ -3,8 +3,26 @@ module.exports = function(sequelize, DataTypes) {
   var Student = sequelize.define('Student', {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    telepon: DataTypes.INTEGER,
-    birthdate: DataTypes.DATE
+    birthdate: DataTypes.DATE,
+    telepon: {
+      type:DataTypes.INTEGER,
+      len : [10,13],
+      isNumeric:true
+    },
+    email:{
+       type:DataTypes.STRING,
+       validate:{
+         isEmail : true
+       }
+    },
+
+    height:{
+      type:DataTypes.INTEGER,
+      validate:{
+        min:150,
+        isNumeric:true
+      }
+    }
   }, {
     classMethods: {
       associate: function(models) {
