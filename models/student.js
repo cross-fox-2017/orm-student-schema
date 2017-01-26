@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
           })
             .done(function(user) {
               if (user) {
-                return next ('Email address already in use')
+                return cb ('Email address already in use')
               }
               cb();
             })
